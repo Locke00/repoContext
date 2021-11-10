@@ -13,9 +13,9 @@ function Item({ prod }) {
 }
 
 function ItemList() {
-  const { prods } = useContext(contextApp);
-
-  console.log(prods);
+  //const useContextApp = useContext(contextApp);
+  const { prods } = useContext(contextApp); //hago un destructuring para recuperar la variable
+  //console.log(prods);
   return prods.map((prod) => <Item key={prod.id} prod={prod} />);
 }
 
@@ -24,13 +24,14 @@ function ItemListContainer() {
 }
 
 export default function App() {
-  const [prods, setProds] = useState(productos);
-
-  console.log(contextApp);
+  const [prods, setProds] = useState(productos); //creo la var q voy a inyectar
+  //console.log(contextApp);
 
   return (
     <contextApp.Provider value={{ prods }}>
-      <ItemListContainer />;
+      {" "}
+      {/*envuelvo el rango donde puedo usar las vars*/}
+      <ItemListContainer productos={productos} />
     </contextApp.Provider>
   );
 }
